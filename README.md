@@ -83,3 +83,25 @@ sudo suricata -T -c /etc/suricata/suricata.yaml -v
 sudo systemctl enable suricata --now
 ```
 
+Step 3: Install Wazuh
+
+1. Run the command below to install the Wazuh Manager, Indexer and Dashboard tools
+   `curl -sO https://packages.wazuh.com/4.x/wazuh-install.sh && sudo bash wazuh-install.sh -a`
+   * **NOTE**: Replace the `x` placeholder from the URL with the latest wazuh version if needed.
+
+2. Once the installation is complete, it'll display the admin credentials log in to the Wazuh web portal. Save them in a secure location. Access the interface at https://<ip-of-your-server> using the generated admin credentials.
+
+Step 4: Link the Endpoint and NIDS together
+
+1. Open the Wazuh config on your endpoint device: `sudo nano /var/ossec/etc/ossec.conf`
+2. Add the Suricata File Monitor:
+   * Scroll down to the log-monitoring section and paste this tracking block directly inside the main <ossec_config> wrapper:
+  ```xml
+   <localfile>
+  <log_format>json</log_format>
+  <location>/var/log/suricata/eve.json</location>
+</localfile>
+```
+
+3. Apply changes with `sudo systemctl restart wazuh-agent`
+   
