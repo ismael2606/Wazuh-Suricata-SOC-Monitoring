@@ -1,17 +1,28 @@
-# Hybrid SOC/Detection Engineering Lab (Wazuh SIEM & Suricata NIDS)
+
+# 🏗️ Hybrid SOC & Network Detection Lab (Wazuh SIEM & Suricata NIDS)
 
 ## 📌 Project Overview
-Designed and deployed a localized **mini-SOC architecture** leveraging a split-component **Wazuh SIEM stack** (Indexer, Manager, Dashboard) virtualized on an ARM64 environment. Configured a Linux-based hardware endpoint acting as a network sensor running **Suricata NIDS** linked via an authenticated **Wazuh Agent pipeline**. Validated end-to-end telemetry ingestion by simulating adversary reconnaissance techniques via **Kali Linux**, successfully mapping network anomalies to the **MITRE ATT&CK framework** inside the SIEM dashboard.
+
+Designed and deployed a dual-purpose **Endpoint & Network Intrusion Detection System (NIDS)** engineering lab utilizing a hardware-based Raspberry Pi network sensor and a virtualized **Wazuh SIEM stack**. The Raspberry Pi captures raw passive wire traffic utilizing an optimized **Suricata** engine, while a localized **Wazuh Agent** securely streams host and network telemetry out to a central **Wazuh Manager, Indexer, and Dashboard** instance. End-to-end telemetry ingestion and rule mapping were successfully validated by executing adversarial reconnaissance and exploits via **Kali Linux** to map telemetry to the **MITRE ATT&CK Framework**.
 
 ---
 
-## 🏗️ Architecture Design
-The architecture isolates components across three distinct operational roles:
-1. **The Ubuntu Server VM (SIEM Core):** Hosts the rule evaluation engine (Wazuh Manager), the analytics indexing database (OpenSearch Indexer), and the monitoring interface (Wazuh Dashboard).
-2. **The Raspberry Pi (Endpoint & NIDS Sensor):** Acts as the primary defensive host. Runs Suricata to sniff raw ingress/egress network traffic packets and pipes system logging and packet alerts back to the SIEM via an authenticated Wazuh Agent.
-3. **The Kali Linux VM (Adversary Simulation):** Represents the threat actor, utilized to run active network exploitation and reconnaissance tests to validate pipeline visibility.
+## 🗺️ Architectural Design & Data Flow
+
+```text
+[Kali Linux VM (Attacker)] ---> (Generates Nmap/Malicious Traffic) 
+                                       |
+                                       v
+[Raspberry Pi (Sensor)]   ---> (Suricata Sniffs Traffic -> Writes to eve.json)
+                                       |
+                                       v
+[Wazuh Agent (Shipper)]   ---> (Encrypts & Ships Logs via Port 1514/TCP)
+                                       |
+                                       v
+[Ubuntu Server (SIEM)]    ---> (Decodes, Indexes, & Visualizes in Safari Dashboard)
 
 ---
+```
 
 ## 🚀 Deployment Instructions
 
