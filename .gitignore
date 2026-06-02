@@ -1,0 +1,6 @@
+# Ignore secret credentials and local script backups
+*credentials*
+*.pem
+*.key
+*password*
+.DS_Store
