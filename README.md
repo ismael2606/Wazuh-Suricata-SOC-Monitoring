@@ -29,6 +29,7 @@ sudo nano /etc/systemd/system/promisc.service
 3. Paste the configuration below (replace eth0 with the target network interface identifier derived from ip a):
 
 
+```
 Ini, TOML
 [Unit]
 Description=Bring up interface in promiscuous mode
@@ -40,7 +41,8 @@ ExecStart=/sbin/ip link set eth0 promiscuous on
 RemainAfterExit=yes
 
 [Install]
-WantedBy=multi-user.target`
+WantedBy=multi-user.target
+```
 
 
 4. Reload the system daemons
