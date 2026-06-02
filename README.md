@@ -19,7 +19,7 @@ Designed and deployed a dual-purpose **Endpoint & Network Intrusion Detection Sy
 [Wazuh Agent (Shipper)]   ---> (Encrypts & Ships Logs via Port 1514/TCP)
                                        |
                                        v
-[Ubuntu Server (SIEM)]    ---> (Decodes, Indexes, & Visualizes in Safari Dashboard)
+[Ubuntu Server (SIEM)]    ---> (Decodes, Indexes, & Visualizes in Dashboard via Web Portal)
 
 ---
 ```
