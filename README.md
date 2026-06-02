@@ -23,12 +23,13 @@ The architecture isolates components across three distinct operational roles:
 Force the internal network interface card (NIC) out of standard filtering mode to allow full frame inspection. Create a persistent systemd lifecycle management service unit:
 
 ```bash
-sudo nano /etc/systemd/system/promisc.service##
-
+sudo nano /etc/systemd/system/promisc.service
+```
 
 3. Paste the configuration below (replace eth0 with the target network interface identifier derived from ip a):
 
-`Ini, TOML
+
+Ini, TOML
 [Unit]
 Description=Bring up interface in promiscuous mode
 After=network.target
@@ -46,13 +47,16 @@ WantedBy=multi-user.target`
 
 ```bash
 sudo systemctl daemon-reload && sudo systemctl enable promisc.service --now
+```
 
 5. Disable Hardware Packet Offloading
 
 ```bash
 sudo apt update && sudo apt install ethtool -y
+```
 
 * To make execution persistent across reboots: `sudo ethtool -K eth0 gro off lro off`
+
 
 
 💾Step 2: Install and Configure Suricata NIDS
@@ -60,6 +64,7 @@ sudo apt update && sudo apt install ethtool -y
 ```bash
 sudo apt install suricata -y
 sudo nano /etc/suricata/suricata.yaml
+```
 
 * Update these values inside the `suricata.yaml` file:
    *HOME_NET: "[192.168.1.0/24]"
@@ -74,4 +79,5 @@ sudo nano /etc/suricata/suricata.yaml
 sudo suricata-update
 sudo suricata -T -c /etc/suricata/suricata.yaml -v
 sudo systemctl enable suricata --now
+```
 
