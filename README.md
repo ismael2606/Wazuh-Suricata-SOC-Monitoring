@@ -82,7 +82,7 @@ sudo nano /etc/suricata/suricata.yaml
 * Update these values inside the `suricata.yaml` file:
    * HOME_NET: `"[192.168.1.0/24]"` <- `replace with your local subnet`
 
-   * af-packet interface: `etho0` <- `replace with your network interface`
+   * af-packet interface: `eth0` <- `replace with your network interface`
 
 * Verify eve-log is active -> `enabled:yes`
 
@@ -116,12 +116,12 @@ sudo systemctl enable suricata --now
 
 3. Apply changes with `sudo systemctl restart wazuh-agent`
 
-### 💥 Step 4: Attack Emulation
+### 💥 Step 5: Attack Emulation
 
 1. From another VM, you can stage, initiate an aggressive network scan with `nmap -A -T4 <endpoint-ip>`
 **NOTE**: Other intrusive scans and staged attacks can be used to see how the NIDS reacts.
 
-### 📈 Step 5: Dashboard Monitoring
+### 📈 Step 6: Dashboard Monitoring
 
 1. Open your browser and navigate to the Wazuh Web Console (`https://ip-of-SIEM-server`) and navigate to Threat Intelligence > Threat Hunting to see the security events.
    
