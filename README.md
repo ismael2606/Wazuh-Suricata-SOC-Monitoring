@@ -100,7 +100,7 @@ sudo systemctl enable suricata --now
    `curl -sO https://packages.wazuh.com/4.x/wazuh-install.sh && sudo bash wazuh-install.sh -a`
    * **NOTE**: Replace the `x` placeholder from the URL with the latest wazuh version if needed.
 
-2. Once the installation is complete, it'll display the admin credentials log in to the Wazuh web portal. Save them in a secure location. Access the interface at https://<ip-of-your-server> using the generated admin credentials.
+2. Once the installation is complete, it'll display the admin credentials log in to the Wazuh web portal. Save them in a secure location. Access the interface at `https://<ip-of-SIEM-server>` using the generated admin credentials.
 
 ### ⛓️‍💥Step 4: Link the Endpoint and NIDS together
 
