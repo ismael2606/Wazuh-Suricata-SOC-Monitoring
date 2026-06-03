@@ -26,6 +26,17 @@ Designed and deployed a dual-purpose **Endpoint & Network Intrusion Detection Sy
 
 ## 🚀 Deployment Instructions
 
+#### Automated Setup (Recommended)
+To automatically optimize your interface, configure Suricata NIDS, install the Wazuh Agent, and build the ingestion pipeline on your Raspberry Pi sensor with a single command, execute the deployment script provided in this repository:
+
+```bash
+wget https://raw.githubusercontent.com/ismael2606/Wazuh-Suricata-SOC-Lab/main/scripts/setup_sensor.sh
+chmod +x setup_sensor.sh
+sudo ./setup_sensor.sh
+```
+
+Otherwise, you can follow manual setup steps below.
+
 ### 🛠️ Step 1: Optimize the Raspberry Pi for Packet Capture
 
 1. Log into your Raspberry Pi OS Lite (64-bit) instance via SSH. Before installing the NIDS engine, the hardware interface must be configured to pass all segment frames up the stack without drop anomalies.
